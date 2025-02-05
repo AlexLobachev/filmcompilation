@@ -1,4 +1,4 @@
-package ru.yandex.practicum.filmcompilation.film;
+package ru.yandex.practicum.filmcompilation.model;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;

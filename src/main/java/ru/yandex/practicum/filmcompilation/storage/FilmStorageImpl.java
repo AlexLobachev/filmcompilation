@@ -1,8 +1,9 @@
-package ru.yandex.practicum.filmcompilation.service;
+package ru.yandex.practicum.filmcompilation.storage;
 
 import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
-import ru.yandex.practicum.filmcompilation.film.Film;
+import org.springframework.stereotype.Component;
+import ru.yandex.practicum.filmcompilation.model.Film;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,13 +18,13 @@ import java.util.Map;
  * @версия 1.0
  */
 @Slf4j
-public class FilmServiceImpl implements FilmService {
+@Component
+public class FilmStorageImpl implements FilmStorage {
     private long id = 0;
     private final Map<Long, Film> filmMap = new HashMap<>();
 
     @Override
     public Film createFilm(Film film) {
-        validation(film);
         film.setId(generationId());
         filmMap.put(film.getId(), film);
         return film;
@@ -31,12 +32,12 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public Film updateFilm(Film film) {
-        if (!filmMap.containsKey(film.getId())){
-            throw new ValidationException("Фильм не найден");
-        }
-        validation(film);
         filmMap.put(film.getId(), film);
         return film;
+    }
+    @Override
+    public Film getFilmById(long filmId){
+        return filmMap.get(id);
     }
 
     @Override
@@ -44,17 +45,9 @@ public class FilmServiceImpl implements FilmService {
         return new ArrayList<>(filmMap.values());
     }
 
+
     private long generationId() {
         id++;
         return id;
-    }
-    private void validation(Film film){
-        if (film.getReleaseDate().isBefore(LocalDate.of(1895, 12, 28))) {
-            throw new ValidationException("Дата не может быть раньше " + LocalDate.of(1895, 12, 28));
-        }
-
-        if (film.getDuration()<0){
-            throw new ValidationException("Фильм не может иметь отрицательную длительность");
-        }
     }
 }

@@ -1,4 +1,4 @@
-package ru.yandex.practicum.filmcompilation.user;
+package ru.yandex.practicum.filmcompilation.model;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
