@@ -6,6 +6,5 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class NotFound extends RuntimeException {
-
     String message;
 }

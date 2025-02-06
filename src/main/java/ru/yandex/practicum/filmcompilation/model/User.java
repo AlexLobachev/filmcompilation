@@ -2,11 +2,13 @@ package ru.yandex.practicum.filmcompilation.model;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import lombok.Data;
+import lombok.NonNull;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Сущность пользователей(П)
@@ -21,6 +23,7 @@ import java.time.LocalDate;
  */
 @Data
 public class User {
+    @NonNull
     private long id;
     @Email
     @NotBlank
@@ -30,4 +33,5 @@ public class User {
     private String name;
     @Past
     private final LocalDate birthday;
+    private Set<Long> idFriends = new HashSet<>();
 }

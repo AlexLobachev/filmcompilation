@@ -1,12 +1,13 @@
 package ru.yandex.practicum.filmcompilation.model;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Сущность фильмов(Ф)
@@ -28,6 +29,7 @@ public class Film {
     private final String description;
     private LocalDate releaseDate;
     private final Duration duration;
+    private Set<User> like = new HashSet<>();
 
     public long getDuration() {
         return duration.toSeconds();

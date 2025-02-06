@@ -1,18 +1,16 @@
 package ru.yandex.practicum.filmcompilation.storage;
 
-import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import ru.yandex.practicum.filmcompilation.model.Film;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Бизнес логика фильмов(Ф)
+ * Хранилище фильмов(Ф)
  *
  * @author Алексей Лобачёв
  * @версия 1.0
@@ -35,9 +33,10 @@ public class FilmStorageImpl implements FilmStorage {
         filmMap.put(film.getId(), film);
         return film;
     }
+
     @Override
-    public Film getFilmById(long filmId){
-        return filmMap.get(id);
+    public Film getFilmById(long filmId) {
+        return filmMap.get(filmId);
     }
 
     @Override
